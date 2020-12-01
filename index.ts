@@ -11,16 +11,16 @@ interface CanGetZeta {
 interface CanGenerateZipf {
  min: number 
  max: number 
- constant: number
- zetan: number 
+ constant?: number
+ zetan?: number 
 }
 
-class ZipfGenerator implements CanGenerateZipf {
-  items: number
-  base: number
-  eta: number
+class ZipfGenerator {
+  private items: number
+  private base: number
+  private eta: number
 
-  constructor(min: number, max: number, constant? :number , zetan?: number ) {
+  constructor(public min: number, public max: number, public constant? :number , public zetan?: number ) {
     this.items = max - min + 1
     this.base = min
     this.constant = constant || 0.99 
@@ -57,6 +57,10 @@ class ZipfGenerator implements CanGenerateZipf {
   }
 
 }
+
+const generator = new ZipfGenerator(1,1000)
+console.log(generator.next())
+
 
 
 const getGenerator = (items) => {
